@@ -1,18 +1,13 @@
 package efanov.entities.animals.herbivores;
 
-import efanov.entities.animals.Animal;
-
 public class WildBoar extends Herbivore {
 
-    public WildBoar(String emoji, double weight, int maxCountOnLocation, int speed, double saturation) {
+    public WildBoar(String emoji, Double weight, Integer maxCountOnLocation, Integer speed, Double saturation) {
         super(emoji, weight, maxCountOnLocation, speed, saturation);
     }
 
-    public WildBoar() {
-    }
-
     @Override
-    public Animal reproduce() {
-        return new WildBoar();
+    public WildBoar reproduce() {
+        return (WildBoar) super.reproduce();
     }
 }

@@ -1,6 +1,4 @@
-package efanov.properties_processing;
-
-import org.yaml.snakeyaml.Yaml;
+package efanov.properties.processing;
 
 import java.io.FileReader;
 import java.io.IOException;

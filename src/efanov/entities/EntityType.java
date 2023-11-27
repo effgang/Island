@@ -17,7 +17,7 @@ public enum EntityType {
     MOUSE,
     GOAT,
     SHEEP,
-    WILD_BOAR,
+    WILDBOAR,
     BUFFALO,
     DUCK,
     CATERPILLAR,

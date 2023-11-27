@@ -1,18 +1,13 @@
 package efanov.entities.animals.herbivores;
 
-import efanov.entities.animals.Animal;
-
 public class Caterpillar extends Herbivore {
 
-    public Caterpillar(String emoji, double weight, int maxCountOnLocation, int speed, double saturation) {
+    public Caterpillar(String emoji, Double weight, Integer maxCountOnLocation, Integer speed, Double saturation) {
         super(emoji, weight, maxCountOnLocation, speed, saturation);
     }
 
-    public Caterpillar() {
-    }
-
     @Override
-    public Animal reproduce() {
-        return new Caterpillar();
+    public Caterpillar reproduce() {
+        return (Caterpillar) super.reproduce();
     }
 }

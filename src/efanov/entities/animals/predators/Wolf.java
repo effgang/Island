@@ -1,18 +1,13 @@
 package efanov.entities.animals.predators;
 
-import efanov.entities.animals.Animal;
-
 public class Wolf extends Predator {
 
-    public Wolf(String emoji, double weight, int maxCountOnLocation, int speed, double saturation) {
+    public Wolf(String emoji, Double weight, Integer maxCountOnLocation, Integer speed, Double saturation) {
         super(emoji, weight, maxCountOnLocation, speed, saturation);
     }
 
-    public Wolf() {
-    }
-
     @Override
-    public Animal reproduce() {
-        return new Wolf();
+    public Wolf reproduce() {
+        return (Wolf) super.reproduce();
     }
 }
