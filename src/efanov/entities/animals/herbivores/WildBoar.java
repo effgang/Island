@@ -8,6 +8,6 @@ public class WildBoar extends Herbivore {
 
     @Override
     public WildBoar reproduce() {
-        return (WildBoar) super.reproduce();
+        return new WildBoar(getEmoji(), getWeight(), getMaxCountOnLocation(), speed, saturation);
     }
 }

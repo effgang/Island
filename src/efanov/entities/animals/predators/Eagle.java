@@ -8,6 +8,6 @@ public class Eagle extends Predator {
 
     @Override
     public Eagle reproduce() {
-        return (Eagle) super.reproduce();
+        return new Eagle(getEmoji(), getWeight(), getMaxCountOnLocation(), speed, saturation);
     }
 }

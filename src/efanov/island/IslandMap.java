@@ -1,45 +1,50 @@
 package efanov.island;
 
+import efanov.constants.Constant;
 import efanov.entities.EntitiesFactory;
 import efanov.entities.Entity;
 import efanov.entities.EntityType;
+import efanov.simulation.SimulationSettings;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.concurrent.ThreadLocalRandom;
+
 @Getter
 @Setter
 public class IslandMap {
     private final EntitiesFactory entitiesFactory;
-    private final int x, y;
+    private final SimulationSettings settings;
     private Location[][] locations;
 
-    public IslandMap(int x, int y) {
+    public IslandMap(SimulationSettings settings) {
         this.entitiesFactory = new EntitiesFactory();
-        this.x = x;
-        this.y = y;
-        this.locations = new Location[x][y];
+        this.settings = settings;
     }
 
     public void init() {
-        for (int coordX = 0; coordX < x; coordX++) {
-            for (int coordY = 0; coordY < y; coordY++) {
-                locations[coordX][coordY] = new Location(coordX, coordY);
+        this.locations = new Location[settings.getHeight()][settings.getWidth()];
+        for (int coordY = 0; coordY < settings.getHeight(); coordY++) {
+            for (int coordX = 0; coordX < settings.getWidth(); coordX++) {
+                locations[coordY][coordX] = new Location(coordY, coordX);
             }
         }
     }
 
     public void fillIsland(int maxCount) {
-        for (int coordX = 0; coordX < x; coordX++) {
-            for (int coordY = 0; coordY < y; coordY++) {
-                for (int i = 0; i <= maxCount; i++) {
-                    Entity entity = getRandom();
-                    var entityAsString = entity.getClass().getSimpleName();
-                    var entityCountOnLocation = locations[coordX][coordY].getEntitiesCountStatistic().getOrDefault(entityAsString, 0);
-                    if (entityCountOnLocation > maxCount) {
-                        continue;
+        for (int coordY = 0; coordY < settings.getHeight(); coordY++) {
+            for (int coordX = 0; coordX < settings.getWidth(); coordX++) {
+                for (int i = 0; i < maxCount; i++) {
+                    while (true) {
+                        Entity entity = getRandom();
+                        var count = locations[coordY][coordX].getEntities().stream()
+                                .filter(entityOnLocation -> entityOnLocation.equals(entity))
+                                .count();
+                        if (count < entity.getMaxCountOnLocation()) {
+                            locations[coordY][coordX].addEntity(entity);
+                            break;
+                        }
                     }
-                    locations[coordX][coordY].addEntity(entity);
                 }
             }
         }
@@ -49,5 +54,31 @@ public class IslandMap {
         var entityTypes = EntityType.values();
         var entityType = entityTypes[ThreadLocalRandom.current().nextInt(entityTypes.length)];
         return entitiesFactory.createEntity(entityType);
+    }
+
+    public Runnable plantGrow() {
+        return () -> {
+            while (true) {
+                var coordY = ThreadLocalRandom.current().nextInt(getHeight());
+                var coordX = ThreadLocalRandom.current().nextInt(getWidth());
+                var herb = entitiesFactory.createEntity(EntityType.PLANT);
+                Location location = locations[coordY][coordX];
+                if (location.getPlants().size() + Constant.PLANT_COUNT_TO_ADD >= herb.getMaxCountOnLocation()) {
+                    continue;
+                }
+                for (int i = 0; i <= Constant.PLANT_COUNT_TO_ADD; i++) {
+                    location.addEntity(herb);
+                }
+                break;
+            }
+        };
+    }
+
+    public int getHeight() {
+        return settings.getHeight();
+    }
+
+    public int getWidth() {
+        return settings.getWidth();
     }
 }

@@ -8,6 +8,6 @@ public class Wolf extends Predator {
 
     @Override
     public Wolf reproduce() {
-        return (Wolf) super.reproduce();
+        return new Wolf(getEmoji(), getWeight(), getMaxCountOnLocation(), speed, saturation);
     }
 }

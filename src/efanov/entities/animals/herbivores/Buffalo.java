@@ -8,6 +8,6 @@ public class Buffalo extends Herbivore {
 
     @Override
     public Buffalo reproduce() {
-        return (Buffalo) super.reproduce();
+        return new Buffalo(getEmoji(), getWeight(), getMaxCountOnLocation(), speed, saturation);
     }
 }

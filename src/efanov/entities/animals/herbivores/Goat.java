@@ -8,6 +8,6 @@ public class Goat extends Herbivore {
 
     @Override
     public Goat reproduce() {
-        return (Goat) super.reproduce();
+        return new Goat(getEmoji(), getWeight(), getMaxCountOnLocation(), speed, saturation);
     }
 }

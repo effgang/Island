@@ -1,16 +1,15 @@
 package efanov.properties.processing;
 
+import efanov.constants.Constant;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
 public class Processor {
 
-
-    public static final String ANIMAL_SETTINGS_PROPERTIES = "/Users/effgang/dev/Island/src/efanov/resources/animal-settings.properties";
-
     public String getEmojiFromFile(String param) {
-        try (FileReader reader = new FileReader(ANIMAL_SETTINGS_PROPERTIES)) {
+        try (FileReader reader = new FileReader(Constant.ANIMAL_SETTINGS_PROPERTIES)) {
             Properties properties = new Properties();
             properties.load(reader);
             return properties.getProperty(param.toLowerCase() + ".emoji");
@@ -21,7 +20,7 @@ public class Processor {
     }
 
     public double getWeightFromFile(String param) {
-        try (FileReader reader = new FileReader(ANIMAL_SETTINGS_PROPERTIES)) {
+        try (FileReader reader = new FileReader(Constant.ANIMAL_SETTINGS_PROPERTIES)) {
             Properties properties = new Properties();
             properties.load(reader);
             return Double.parseDouble(properties.getProperty(param.toLowerCase() + ".weight"));
@@ -31,7 +30,7 @@ public class Processor {
     }
 
     public int getMaxCountFromFile(String param) {
-        try (FileReader reader = new FileReader(ANIMAL_SETTINGS_PROPERTIES)) {
+        try (FileReader reader = new FileReader(Constant.ANIMAL_SETTINGS_PROPERTIES)) {
             Properties properties = new Properties();
             properties.load(reader);
             return Integer.parseInt(properties.getProperty(param.toLowerCase() + ".maxCount"));
@@ -41,7 +40,7 @@ public class Processor {
     }
 
     public int getSpeedFromFile(String param) {
-        try (FileReader reader = new FileReader(ANIMAL_SETTINGS_PROPERTIES)) {
+        try (FileReader reader = new FileReader(Constant.ANIMAL_SETTINGS_PROPERTIES)) {
             Properties properties = new Properties();
             properties.load(reader);
             return Integer.parseInt(properties.getProperty(param.toLowerCase() + ".speed"));
@@ -51,7 +50,7 @@ public class Processor {
     }
 
     public double getSaturationFromFile(String param) {
-        try (FileReader reader = new FileReader(ANIMAL_SETTINGS_PROPERTIES)) {
+        try (FileReader reader = new FileReader(Constant.ANIMAL_SETTINGS_PROPERTIES)) {
             Properties properties = new Properties();
             properties.load(reader);
             return Double.parseDouble(properties.getProperty(param.toLowerCase() + ".saturation"));

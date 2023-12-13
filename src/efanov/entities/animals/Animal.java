@@ -8,11 +8,11 @@ import java.util.concurrent.ThreadLocalRandom;
 
 @Getter
 @Setter
-public class Animal extends Entity {
+public abstract class Animal extends Entity {
     private static final int BOUND = 100;
-    private int speed;
-    private double saturation;
-    private double health;
+    protected int speed;
+    protected double saturation;
+    protected double health;
 
     public Animal(String emoji, Double weight, Integer maxCountOnLocation, Integer speed, Double saturation) {
         super(emoji, weight, maxCountOnLocation);
@@ -21,9 +21,7 @@ public class Animal extends Entity {
         this.health = saturation;
     }
 
-    public Animal reproduce() {
-        return new Animal(getEmoji(), getWeight(), getMaxCountOnLocation(), speed, saturation);
-    }
+    public abstract Animal reproduce();
 
     public void eat(Entity food) {
         if (food.getWeight() + this.getHealth() >= this.getSaturation()) {
@@ -41,7 +39,7 @@ public class Animal extends Entity {
     public Action chooseAction() {
         var action = Action.values()[ThreadLocalRandom.current().nextInt(Action.values().length)];
         var isActiveAction = ThreadLocalRandom.current().nextInt(BOUND) < action.getActionChance();
-        return isActiveAction ? action : Action.MOVE;
+        return isActiveAction ? action : Action.SLEEP;
     }
 
 }

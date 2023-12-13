@@ -8,6 +8,6 @@ public class Fox extends Predator {
 
     @Override
     public Fox reproduce() {
-        return (Fox) super.reproduce();
+        return new Fox(getEmoji(), getWeight(), getMaxCountOnLocation(), speed, saturation);
     }
 }

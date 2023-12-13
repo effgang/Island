@@ -8,6 +8,6 @@ public class Deer extends Herbivore {
 
     @Override
     public Deer reproduce() {
-        return (Deer) super.reproduce();
+        return new Deer(getEmoji(), getWeight(), getMaxCountOnLocation(), speed, saturation);
     }
 }

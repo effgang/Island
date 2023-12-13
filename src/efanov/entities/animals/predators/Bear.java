@@ -8,6 +8,6 @@ public class Bear extends Predator {
 
     @Override
     public Bear reproduce() {
-        return (Bear) super.reproduce();
+        return new Bear(getEmoji(), getWeight(), getMaxCountOnLocation(), speed, saturation);
     }
 }

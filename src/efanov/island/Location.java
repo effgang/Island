@@ -2,7 +2,7 @@ package efanov.island;
 
 import efanov.entities.Entity;
 import efanov.entities.animals.Animal;
-import efanov.entities.plants.Plant;
+import efanov.entities.plants.Herb;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -12,12 +12,12 @@ import java.util.Map;
 
 @Getter
 public class Location {
-    private int x;
-    private int y;
-    private List<Entity> entities;
-    private Map<String, Integer> entitiesCountStatistic;
+    private final int x;
+    private final int y;
+    private final List<Entity> entities;
+    private final Map<String, Integer> entitiesCountStatistic;
 
-    public Location(int x, int y) {
+    public Location(int y, int x) {
         this.x = x;
         this.y = y;
         this.entities = new ArrayList<>();
@@ -41,10 +41,10 @@ public class Location {
                 .toList();
     }
 
-    public List<Plant> getPlants() {
+    public List<Herb> getPlants() {
         return entities.stream()
-                .filter(e -> e instanceof Plant)
-                .map(e -> (Plant) e)
+                .filter(e -> e instanceof Herb)
+                .map(e -> (Herb) e)
                 .toList();
     }
 

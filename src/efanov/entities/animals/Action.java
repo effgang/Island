@@ -6,9 +6,10 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum Action {
-    EAT(90),
-    REPRODUCE(60),
-    MOVE(100);
+    EAT(30),
+    REPRODUCE(30),
+    MOVE(30),
+    SLEEP(10);
 
     private final int actionChance;
 }

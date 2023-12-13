@@ -9,6 +9,6 @@ public class Horse extends Herbivore {
 
     @Override
     public Horse reproduce() {
-        return (Horse) super.reproduce();
+        return new Horse(getEmoji(), getWeight(), getMaxCountOnLocation(), speed, saturation);
     }
 }

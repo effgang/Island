@@ -8,6 +8,6 @@ public class Boa extends Predator {
 
     @Override
     public Boa reproduce() {
-        return (Boa) super.reproduce();
+        return new Boa(getEmoji(), getWeight(), getMaxCountOnLocation(), speed, saturation);
     }
 }

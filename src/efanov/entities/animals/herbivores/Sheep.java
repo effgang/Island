@@ -8,6 +8,6 @@ public class Sheep extends Herbivore {
 
     @Override
     public Sheep reproduce() {
-        return (Sheep) super.reproduce();
+        return new Sheep(getEmoji(), getWeight(), getMaxCountOnLocation(), speed, saturation);
     }
 }

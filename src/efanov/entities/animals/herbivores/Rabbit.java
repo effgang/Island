@@ -8,6 +8,6 @@ public class Rabbit extends Herbivore {
 
     @Override
     public Rabbit reproduce() {
-        return (Rabbit) super.reproduce();
+        return new Rabbit(getEmoji(), getWeight(), getMaxCountOnLocation(), speed, saturation);
     }
 }

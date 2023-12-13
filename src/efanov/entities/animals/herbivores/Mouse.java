@@ -8,6 +8,6 @@ public class Mouse extends Herbivore {
 
     @Override
     public Mouse reproduce() {
-        return (Mouse) super.reproduce();
+        return new Mouse(getEmoji(), getWeight(), getMaxCountOnLocation(), speed, saturation);
     }
 }
